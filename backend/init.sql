@@ -96,17 +96,6 @@ CREATE TABLE IF NOT EXISTS team_memberships (
     UNIQUE(user_id, team_id)
 );
 
--- Insert demo data
-INSERT INTO users (name, email, password_hash, role) VALUES 
-('Coach Johnson', 'coach@team.com', '$2a$10$example_hash_for_password', 'admin'),
-('Mike Johnson', 'player@team.com', '$2a$10$example_hash_for_password', 'player'),
-('Parent Smith', 'parent@team.com', '$2a$10$example_hash_for_password', 'parent')
-ON CONFLICT (email) DO NOTHING;
-
-INSERT INTO teams (name, season, admin_id, invite_code) VALUES 
-('Eagles Baseball', '2025 Spring', 1, 'TEAM123')
-ON CONFLICT (invite_code) DO NOTHING;
-
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_players_team_id ON players(team_id);
 CREATE INDEX IF NOT EXISTS idx_games_team_id ON games(team_id);
