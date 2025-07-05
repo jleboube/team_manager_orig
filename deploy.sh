@@ -8,7 +8,7 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-if ! command -v docker-compose &> /dev/null; then
+if ! command -v docker compose &> /dev/null; then
     echo "❌ Docker Compose is not installed. Please install Docker Compose first."
     exit 1
 fi
@@ -24,11 +24,11 @@ chmod 700 postgres_data
 
 # Pull latest images
 echo "📦 Pulling Docker images..."
-docker-compose pull
+docker compose pull
 
 # Build and start services
 echo "🔨 Building and starting services..."
-docker-compose up --build -d
+docker compose up --build -d
 
 # Wait for services to be ready
 echo "⏳ Waiting for services to start..."
@@ -36,11 +36,11 @@ sleep 30
 
 # Check if services are running
 echo "🔍 Checking service status..."
-docker-compose ps
+docker compose ps
 
 # Show logs
 echo "📋 Recent logs:"
-docker-compose logs --tail=20
+docker compose logs --tail=20
 
 echo ""
 echo "✅ Deployment complete!"
@@ -51,9 +51,9 @@ echo "   API: http://localhost/api"
 echo "   Admin Panel: http://localhost (login as coach@team.com)"
 echo ""
 echo "📊 Monitoring:"
-echo "   View logs: docker-compose logs -f"
-echo "   Stop services: docker-compose down"
-echo "   Restart: docker-compose restart"
+echo "   View logs: docker compose logs -f"
+echo "   Stop services: docker compose down"
+echo "   Restart: docker compose restart"
 echo ""
 echo "🔑 Default login:"
 echo "   Email: coach@team.com"
